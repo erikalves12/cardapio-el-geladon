@@ -1,4 +1,4 @@
-import "../components/PaletaLista";
+import "components/PaletaLista/PaletaLista";
 
 export const paletas = [
     {
