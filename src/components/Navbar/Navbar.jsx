@@ -24,7 +24,7 @@ function Navbar({ createPaleta }) {
             onClick={() => createPaleta()}
           >
             <img
-              src={sacola}
+              src= "https://th.bing.com/th/id/R.8faad9c0e26663d34aabf46a480288e9?rik=hyTzyH9LoMLXBw&pid=ImgRaw&r=0"   
               width="40px"
               className="Paleta__icone"
               alt="Adiciionar paleta"
