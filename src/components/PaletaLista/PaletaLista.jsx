@@ -1,9 +1,20 @@
-import { paletas } from "mocks/paletas.js";
+import { useState, useEffect } from "react";
+
+import PaletaListaItem from "components/PaletaListaItem/PaletaListaItem"
+import { PaletaService } from "services/PaletaService";
+
 import "./PaletaLista.css";
-import { useState } from "react";
+import PaletaDetalhesModal from "components/PaletaDetalhesModal/PaletaDetalhesModal";
 
 function PaletaLista() {
+
+  const [paletas, setPaletas] = useState([]);
+
   const [paletaSelecionada, setPaletaSelecionada] = useState({});
+
+  const [paletaModal, setPaletaModal] = useState(false);
+
+  
 
   const adicionarItem = (paletaIndex) => {
     const paleta = {
@@ -17,52 +28,39 @@ function PaletaLista() {
     setPaletaSelecionada({...paletaSelecionada, ...paleta});
 }
 
-  const badgeCounter = (canRender, index) =>
-    Boolean(canRender) && (
-      <span className="PaletaListaItem__badge">
-        {" "}
-        {paletaSelecionada[index]}{" "}
-      </span>
-    );
+const getLista = async () => {
+  const response = await PaletaService.getLista();
+  setPaletas(response);
+};
 
-    const removeButton = (canRender, index) =>
-    Boolean(canRender) && (<button className="Acoes__remover" onClick={() => removerItem(index)}>remover</button>);
-  
+const getPaletaById = async (paletaId) => {
+  const response = await PaletaService.getById(paletaId);
+  setPaletaModal(response);
+};
+
+useEffect(() => {
+  getLista();
+}, []);
 
   return (
     <div className="PaletaLista">
-      {paletas.map((paleta, index) => (
-        <div className="PaletaListaItem" key={`PaletaListaItem-${index}`}>
-          {badgeCounter(paletaSelecionada[index], index)}
-          <div>
-            <div className="PaletaListaItem__titulo">{paleta.titulo}</div>
-            <div className="PaletaListaItem__preco">
-              {paleta.preco.toFixed(2)}
-            </div>
-            <div className="PaletaListaItem__descricao">
-              {paleta.descricao}
-              Quam vulputate dignissim suspendisse in est ante in nibh mauris.
-            </div>
-            <div className="PaletaListaItem__acoes Acoes">
-              <button
-                className={`Acoes__adicionar ${
-                  !paletaSelecionada[index] && "Acoes__adicionar--preencher"
-                }`}
-                onClick={() => adicionarItem(index)}
-              >
-                adicionar
-              </button>
-              {removeButton(paletaSelecionada[index], index)}
-            </div>
-          </div>
-          <img
-            className="PaletaListaItem__foto"
-            src={paleta.foto}
-            alt={`Paleta de ${paleta.sabor}`}
-          />
-        </div>
-      ))}
-    </div>
+	{
+  paletas.map((paleta, index) => (
+    <PaletaListaItem
+      key={`PaletaListaItem-${index}`}
+      paleta={paleta}
+      quantidadeSelecionada={paletaSelecionada[index]}
+      index={index}
+      onAdd={(index) => adicionarItem(index)}
+      onRemove={(index) => removerItem(index)}
+      clickItem={(paletaId) => getPaletaById(paletaId)}
+    />
+  ))
+}
+
+{paletaModal && <PaletaDetalhesModal paleta={paletaModal} closeModal={() => setPaletaModal(false)} />}
+
+</div>
   );
 }
 
