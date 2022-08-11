@@ -37,7 +37,6 @@ function PaletaLista({ paletaCriada }) {
     setPaletaModal(response);
   };
 
-  
   useEffect(() => {
     getLista();
   }, []);
@@ -48,9 +47,8 @@ function PaletaLista({ paletaCriada }) {
   };
 
   useEffect(() => {
-    if (paletaCriada) adicionaPaletaNaLista(paletaCriada); 
+    if (paletaCriada) adicionaPaletaNaLista(paletaCriada);
   }, [paletaCriada]);
-
 
   return (
     <div className="PaletaLista">

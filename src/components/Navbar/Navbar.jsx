@@ -18,12 +18,19 @@ function Navbar({ createPaleta }) {
           <span className="Logo__titulo"> El Geladon </span>
         </div>
         <div className="Header__opcoes Opcoes">
+          <button
+            type="button"
+            className="Opcoes__paleta Paleta"
+            onClick={() => createPaleta()}
+          >
+            <img
+              src={sacola}
+              width="40px"
+              className="Paleta__icone"
+              alt="Adiciionar paleta"
+            />
+          </button>
 
-       <button type = "button" className="Opcoes__paleta Paleta" onClick={()=> createPaleta()}>
-        <img src={sacola} width="40px" className="Paleta__icone" alt="Adiciionar paleta"/>
-       </button>
-
-    
           <div className="Opcoes__sacola Sacola">
             <img
               src={sacola}
