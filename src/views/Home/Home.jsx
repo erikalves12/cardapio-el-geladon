@@ -1,15 +1,24 @@
+import "./Home.css";
 import PaletaLista from "components/PaletaLista/PaletaLista.jsx";
 import Navbar from "components/Navbar/Navbar"
-import "./Home.css";
+import AdicionaPaletaModal from "components/AdicionaPaletaModal/AdicionaPaletaModal";
 
+import { useState } from "react";
 
 function Home() {
+  const [canShowAdicionaPaletaModal, setCanShowAdicionaPaletaModal] = useState(false);
+
   return (
     <div className="Home">
-      
-<Navbar />
+      <Navbar createPaleta={() => setCanShowAdicionaPaletaModal(true)} />
+
       <div className="Home__container">
         <PaletaLista />
+        {
+                    canShowAdicionaPaletaModal &&
+                    (<AdicionaPaletaModal closeModal={() => setCanShowAdicionaPaletaModal(false)} />)
+                }
+        
       </div>
     </div>
   );
