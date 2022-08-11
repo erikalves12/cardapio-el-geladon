@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import Modal from "components/Modal/Modal";
-
+import { PaletaService } from "services/PaletaService";
 import "./AdicionaPaletaModal.css";
 
-function AdicionaPaletaModal({ closeModal }) {
+function AdicionaPaletaModal({ closeModal,onCreatePaleta }) {
     const form = {
         preco: "",
         sabor: "",
@@ -33,7 +33,24 @@ function AdicionaPaletaModal({ closeModal }) {
     useEffect(() => {
         canDisableSendButton();
     });
-
+    const createPaleta = async () => {
+        const renomeiaCaminhoFoto = (fotoPath) => fotoPath.split('\\').pop();
+    
+        const { sabor, recheio, descricao, preco, foto } = state;
+    
+        const titulo = sabor + (recheio && ' com ' + recheio);
+    
+        const paleta = {
+            sabor: titulo,
+            descricao,
+            preco,
+            foto: `assets/images/${renomeiaCaminhoFoto(foto)}`
+        }
+    
+        const response = await PaletaService.create(paleta);
+        onCreatePaleta(response);
+        closeModal();
+    }
     return (
         <Modal closeModal={closeModal}>
             <div className="AdicionaPaletaModal">
@@ -95,7 +112,9 @@ function AdicionaPaletaModal({ closeModal }) {
                     <button
     className="AdicionaPaletaModal__enviar"
     type="button"
-    disabled={canDisable} >
+    disabled={canDisable} 
+    onClick={createPaleta} >
+        
     Enviar
 </button>
                 </form>
