@@ -3,6 +3,7 @@
 
 
 .PaletaListaItem {
+  cursor: pointer;
     font-family: "Exo";
     background: rgba(255, 255, 255, 0.3);
     border-radius: 10px;
@@ -11,6 +12,7 @@
     display: flex;
     justify-content: space-around;
     position: relative;
+    transition: all 0.5s;
   }
   
   @media (max-width: 400px) {
@@ -19,11 +21,60 @@
       height: 180px;
     }
   }
+  .PaletaListaItem--disable {
+    box-shadow: 0px 0px 7px rgba(148, 0, 211);
+  }
   
+  .PaletaListaItem--disable,
+  .PaletaListaItem--disable .PaletaListaItem__preco {
+    color: gray;
+  }
+  
+  .PaletaListaItem--disable .PaletaListaItem__badge {
+    display: none;
+  }
+  
+  .PaletaListaItem--disable img {
+    filter: grayscale(100%);
+  }
+  
+  .PaletaListaItem--disable button:disabled {
+    background-color: gray;
+  }
+  
+  .PaletaListaItem__tag {
+    background-color: darkviolet !important;
+    color: white !important;
+    position: absolute;
+    font-size: 0.6em;
+    border-radius: 5px;
+    padding: 5px;
+    top: -15px;
+    left: -10px;
+    letter-spacing: 1px;
+      }
+      .PaletaListaItem__badge {
+        background-color: rgb(230, 34, 4);
+        width: 20px;
+        height: 20px;
+        text-align: center;
+        vertical-align: middle;
+        position: relative;
+        color: rgb(245, 243, 243);
+        font-size: .8em;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+        top: -9px;
+        left: -9px;
+      }
+    
   .PaletaListaItem > div {
     display: flex;
     justify-content: space-between;
     flex-direction: column;
+    width: 100%;
   }
   
   .PaletaListaItem__titulo {
@@ -34,6 +85,7 @@
   
   .PaletaListaItem__descricao {
     font-size: 0.85em;
+    width: 100%;
   }
   
   .PaletaListaItem__preco {
@@ -77,23 +129,5 @@
     margin-right: -60px;
   }
 
-  .PaletaListaItem__badge {
-    background-color: rgb(230, 34, 4);
-    width: 20px;
-    height: 20px;
-    text-align: center;
-    vertical-align: middle;
-    position: relative;
-    color: rgb(245, 243, 243);
-    font-size: .8em;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 50%;
-    top: -9px;
-    left: -9px;
-  }
-
-  …
-.PaletaListaItem {
-  cursor: pointer;}
+  
+  
