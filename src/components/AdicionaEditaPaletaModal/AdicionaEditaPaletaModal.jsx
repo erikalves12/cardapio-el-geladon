@@ -57,25 +57,26 @@ function AdicionaEditaPaletaModal({
 
     const serviceCall = {
       [ActionMode.NORMAL]: () => PaletaService.create(paleta),
-      [ActionMode.ATUALIZAR]: () => PaletaService.updtateById(paletaToUpdate?.id, paleta),
-    }
+      [ActionMode.ATUALIZAR]: () =>
+        PaletaService.updtateById(paletaToUpdate?.id, paleta),
+    };
 
     const response = await serviceCall[mode]();
 
     const actionResponse = {
       [ActionMode.NORMAL]: () => onCreatePaleta(response),
       [ActionMode.ATUALIZAR]: () => onUpdatePaleta(response),
-    }
+    };
 
     actionResponse[mode]();
 
     const reset = {
-      preco: '',
-      sabor: '',
-      recheio: '',
-      descricao: '',
-      foto: '',
-    }
+      preco: "",
+      sabor: "",
+      recheio: "",
+      descricao: "",
+      foto: "",
+    };
 
     setState(reset);
     closeModal();
@@ -84,7 +85,11 @@ function AdicionaEditaPaletaModal({
     <Modal closeModal={closeModal}>
       <div className="AdicionaPaletaModal">
         <form autocomplete="off">
-        <h2> { ActionMode.ATUALIZAR === mode ? 'Atualizar' : 'Adicionar ao' } Cardápio </h2>
+          <h2>
+            {" "}
+            {ActionMode.ATUALIZAR === mode ? "Atualizar" : "Adicionar ao"}{" "}
+            Cardápio{" "}
+          </h2>
           <div>
             <label className="AdicionaPaletaModal__text" htmlFor="preco">
               {" "}
@@ -152,7 +157,6 @@ function AdicionaEditaPaletaModal({
               id="foto"
               type="file"
               accept="image/png, image/gif, image/jpeg"
-              
               onChange={(e) => handleChange(e, "foto")}
               required
             />
@@ -162,11 +166,9 @@ function AdicionaEditaPaletaModal({
             className="AdicionaPaletaModal__enviar"
             type="button"
             disabled={canDisable}
-            onClick={handleSend} >
-            { ActionMode.NORMAL === mode ? 'Enviar' : 'Atualizar' }
-
-          
-           
+            onClick={handleSend}
+          >
+            {ActionMode.NORMAL === mode ? "Enviar" : "Atualizar"}
           </button>
         </form>
       </div>

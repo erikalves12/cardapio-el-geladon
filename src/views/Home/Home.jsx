@@ -40,13 +40,13 @@ function Home() {
     setModoAtual(ActionMode.NORMAL);
   };
   const abrirSacola = async () => {
-    const lista = JSON.parse(localStorage.getItem('sacola'));
-    const sacola = lista.filter(i => i.quantidade > 0);
-  
-    await SacolaService.create(sacola)
-  
-    setCanOpenBag(true)
-  }
+    const lista = JSON.parse(localStorage.getItem("sacola"));
+    const sacola = lista.filter((i) => i.quantidade > 0);
+
+    await SacolaService.create(sacola);
+
+    setCanOpenBag(true);
+  };
 
   return (
     <div className="Home">
@@ -84,10 +84,7 @@ function Home() {
             onDeletePaleta={(paleta) => setPaletaRemovida(paleta)}
           />
         )}
-        {
-  canOpenBag &&
-  <SacolaModal closeModal={() => setCanOpenBag(false)} />
-}
+        {canOpenBag && <SacolaModal closeModal={() => setCanOpenBag(false)} />}
       </div>
     </div>
   );

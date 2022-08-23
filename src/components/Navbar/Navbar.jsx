@@ -2,10 +2,9 @@ import "./Navbar.css";
 import { ActionMode } from "constants/index";
 import sacola from "assets/icons/sacola.svg";
 import logo from "assets/logo.svg";
-import atualizar from "assets/icons/sacola.svg"
-import deletar from "assets/icons/deletar.svg"
-function Navbar({ createPaleta, updatePaleta, mode, deletePaleta, openBag}) 
-{
+import atualizar from "assets/icons/sacola.svg";
+import deletar from "assets/icons/deletar.svg";
+function Navbar({ createPaleta, updatePaleta, mode, deletePaleta, openBag }) {
   return (
     <div className="Header">
       <div className="row">
@@ -19,8 +18,7 @@ function Navbar({ createPaleta, updatePaleta, mode, deletePaleta, openBag})
           <span className="Logo__titulo"> El Geladon </span>
         </div>
         <div className="Header__opcoes Opcoes">
-
-        <button
+          <button
             type="button"
             className={`Opcoes__paleta Paleta ${
               mode === ActionMode.ATUALIZAR && "Paleta--ativa"
@@ -35,20 +33,26 @@ function Navbar({ createPaleta, updatePaleta, mode, deletePaleta, openBag})
             />
           </button>
           <button
-  type="button"
-  className={`Opcoes__paleta Paleta ${mode === ActionMode.DELETAR && 'Paleta--deletar'}`}
-  onClick={() => deletePaleta()}>
-
-  <img src={deletar} width="40px" className="Paleta__icone" alt="Deletar paleta" />
-
-</button>
+            type="button"
+            className={`Opcoes__paleta Paleta ${
+              mode === ActionMode.DELETAR && "Paleta--deletar"
+            }`}
+            onClick={() => deletePaleta()}
+          >
+            <img
+              src={deletar}
+              width="40px"
+              className="Paleta__icone"
+              alt="Deletar paleta"
+            />
+          </button>
           <button
             type="button"
             className="Opcoes__paleta Paleta"
             onClick={() => createPaleta()}
           >
             <img
-              src= "https://th.bing.com/th/id/R.8faad9c0e26663d34aabf46a480288e9?rik=hyTzyH9LoMLXBw&pid=ImgRaw&r=0"   
+              src="https://th.bing.com/th/id/R.8faad9c0e26663d34aabf46a480288e9?rik=hyTzyH9LoMLXBw&pid=ImgRaw&r=0"
               width="40px"
               className="Paleta__icone"
               alt="Adiciionar paleta"
